@@ -10,4 +10,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = "0.27.0"
-rquickjs-core = { version = "0.10", git = "https://github.com/DelSkayn/rquickjs" }
+rquickjs-core = { version = "0.10", git = "https://github.com/DelSkayn/rquickjs" , features = ["bindgen"]}
