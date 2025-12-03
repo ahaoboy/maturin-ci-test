@@ -50,6 +50,7 @@ jobs:
         if: matrix.platform.target == 'x86'
         run: |
           sudo dpkg --add-architecture i386
+          sudo apt update
           sudo apt install -y gcc-multilib g++-multilib libc6-dev:i386
       - uses: ahaoboy/aarch64-linux-musl-cross-build@v1
         if: startsWith(matrix.platform.target, 'aarch64')
