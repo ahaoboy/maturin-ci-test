@@ -46,6 +46,11 @@ jobs:
         run: |
           sudo apt update
           sudo apt install build-essential clang libclang-dev gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
+      - name: install i386
+        if: startsWith(matrix.platform.target, 'x86')
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt install -y gcc-multilib g++-multilib libc6-dev:i386
       - uses: ahaoboy/aarch64-linux-musl-cross-build@v1
         if: startsWith(matrix.platform.target, 'aarch64')
       - name: Build wheels
@@ -82,6 +87,12 @@ jobs:
           sudo apt install build-essential clang libclang-dev gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
       - uses: ahaoboy/aarch64-linux-musl-cross-build@v1
         if: startsWith(matrix.platform.target, 'aarch64')
+      - name: install i386
+        if: startsWith(matrix.platform.target, 'x86')
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt install -y gcc-multilib g++-multilib libc6-dev:i386
+
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
